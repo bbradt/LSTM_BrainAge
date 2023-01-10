@@ -7,7 +7,7 @@ import mat73
 import scipy.io
 import time
 
-class DevData(Dataset):
+class UKBHCP1200Data(Dataset):
     def __init__(self,
                  N_components=53,
                  N_timepoints=448,

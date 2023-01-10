@@ -2,9 +2,9 @@ import os
 from torch import nn, optim
 from torch.utils.data import DataLoader, Subset
 from catalyst import dl, utils
-from fake_fnc import FakeFNC
-from load_UKB_HCP1200 import DevData
-from bilstm import BiLSTM
+from dataloaders.fake_fnc import FakeFNC
+from dataloaders.load_UKB_HCP1200 import DevData
+from models.bilstm import BiLSTM
 from sklearn.model_selection import train_test_split
 import numpy as np
 import torch
@@ -20,9 +20,10 @@ full_idx = np.arange(len(full_dataset))
 train_idx, test_idx = train_test_split(full_idx, test_size=0.1)
 train_dataset = Subset(full_dataset, train_idx)
 test_dataset = Subset(full_dataset, test_idx)
+'''
 loaders = {
     "train": DataLoader(train_dataset, batch_size=64),
-    "valid": DataLoader(test_dataset, batch_size=64),
+    "valid": DataLoader(test_dataset, batch_size=len(test_dataset)),
 }
 
 runner = dl.SupervisedRunner(
@@ -45,8 +46,9 @@ runner.train(
     valid_loader="valid",
     valid_metric="loss",
     minimize_valid_metric=True,
-    verbose=True    
+    verbose=True,
 )
+'''
 test_loader = DataLoader(test_dataset, batch_size=len(test_dataset))
 checkpoint = utils.load_checkpoint("logs/test_10000_gpu/checkpoints/best_full.pth")
 utils.unpack_checkpoint(

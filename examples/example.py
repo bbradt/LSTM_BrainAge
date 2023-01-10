@@ -2,8 +2,8 @@ import os
 from torch import nn, optim
 from torch.utils.data import DataLoader, Subset
 from catalyst import dl, utils
-from fake_fnc import FakeFNC
-from bilstm import BiLSTM
+from dataloaders.fake_fnc import FakeFNC
+from models.bilstm import BiLSTM
 from sklearn.model_selection import train_test_split
 import numpy as np
 import torch

@@ -6,7 +6,7 @@ import pandas as pd
 import mat73
 
 
-class DevData(Dataset):
+class UKBData(Dataset):
     def __init__(self,
                  N_components=53,
                  N_timepoints=490,
@@ -28,6 +28,7 @@ class DevData(Dataset):
             subj_form       strf    format string for resolving subject folders
             data_file       str     the filename for loading individual subject data
         """
+        super().__init__()
         self.N_subjects = N_subs
         # The dFNC filepath for each subject is a format string, where the root and filename stay the same
         # but subject directory changes
